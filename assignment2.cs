@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 
 /**
-Name: 
-Date of completion:
+Name: Kei Mullins
+Date of completion: 3/29
 
 Please be sure to comment your code - provide a comment for each structure use in 
 program.
@@ -16,17 +16,17 @@ namespace assignment_three
         {
             //Declarations
             string name;
-            int  hourlySalary, hoursWorked, department;
+            int  hourlySalary, hoursWorked, departmentInput;
             string EXIT = "EXIT";
 
-            
-            Console.WriteLine("Please enter a name.");
+            //initializing the loop
+            Console.WriteLine("Thank you for using the MPLS Dog Boarding HR Payroll Report Program. Please enter a name.");
             name = Console.ReadLine();
             while(name != EXIT){
                  
 
-
-            /***var departmentDict = new Dictionary<int, string>();
+            //dictionary for the department names
+            /**var departmentDict = new Dictionary<int, string>();
             departmentDict.Add(1, "Personnel");
             departmentDict.Add(2, "Marketing");
             departmentDict.Add(3, "Information Technology");
@@ -40,9 +40,14 @@ namespace assignment_three
             
 
             Console.WriteLine("Please enter a number from 1 - 7 for a department.");
-            department = Convert.ToInt32((Console.ReadLine()));
-            if(department > 7 && department < 1){
+            departmentInput = Convert.ToInt32((Console.ReadLine()));
+            
+            
+            //Defensive Coding to make sure user imputs the correct range.
+            
+            if(departmentInput > 7 && departmentInput < 1){
                 Console.WriteLine("Invalid. Please enter a number from 1 to 7.");
+                
             }
 
             
@@ -53,12 +58,14 @@ namespace assignment_three
             Console.WriteLine("Please enter the hours they have worked.");
             hoursWorked = Convert.ToInt32(Console.ReadLine());
 
+
+            //Individual salary
             int grossSalary = hourlySalary * hoursWorked;
             
-            Console.WriteLine($"For {name} in department {department}, the gross salary is {grossSalary}.");
+            Console.WriteLine($"For {name} in department {departmentInput}, the gross salary is {grossSalary}.");
             
 
-            string [ , ] departmentSalary = {
+            /**string [ , ] departmentSalary = {
                 { "Personnel", "accumulatedSalary"},
                 { "Marketing", "accumulatedSalary"},
                 { "Information Technology", "accumulatedSalary"},
@@ -68,36 +75,45 @@ namespace assignment_three
                 { "Accouting", "accumulatedSalary"},
             };
 
-            string salary = departmentSalary [department - 1, grossSalary ];
+            string salary = departmentSalary [department - 1, grossSalary ];**/
 
+            //arrays
+            string[] departments_array = {"Personnel", "Marketing", "Information Technology", "Computer Services", "Sales", "Legal", "Accounting"};
+            double[] accumulatedSalary = {0, 0, 0, 0, 0, 0, 0};
 
-            //string[] departments = {"Personnel, Marketing, Information Technology, Computer Services, Sales, Legal, Accounting"};
-            //int[] accumulatedSalary = {1, 2, 3, 4, 5, 6, 7};
+            List<string> departmentList = new List<string>();
 
-            //int salary = accumulatedSalary[department - 1];
-            //Console.WriteLine(accumulatedSalary);
+            //populating arrays
+            for (var i = 0; i < departments_array.Length; i++)
+            {
+                departmentList.Add(departments_array[i]);
+            }
 
 
 
 
             
 
-
             
-            //foreach(string hourlySalary in accumulatedSalary){
+            
 
-            //}
+
+
 
 
             Console.WriteLine(" To start again enter a name or type EXIT.");
-            name=Console.ReadLine();
+           
+                name=Console.ReadLine();
+
+            //name=Console.ReadLine();
 
             
             
             
             Console.WriteLine("Thank you for using this program. ");
+            departmentList.ForEach(a => Console.WriteLine((a + accumulatedSalary[departmentList.IndexOf(a)])));
         }
-      
+            
       }
     }
 }
